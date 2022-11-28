@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./RestaurantCard";
 import sanityClient from "../sanity";
+import { useTailwind } from "tailwind-rn";
 
 const FeatureRow = ({ title, description, id }) => {
+  const tw = useTailwind();
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
@@ -23,16 +25,16 @@ const FeatureRow = ({ title, description, id }) => {
 
   return (
     <View>
-      <View className="mt-4 flex-row items-center justify-between px-4">
-        <Text className="font-bold text-lg">{title}</Text>
+      <View style={tw("mt-4 flex-row items-center justify-between px-4")}>
+        <Text style={tw("font-bold text-lg")}>{title}</Text>
         <ArrowRightIcon color="#00ccbb" />
       </View>
-      <Text className="text-xs px-4 text-gray-500">{description}</Text>
+      <Text style={tw("text-xs px-4 text-gray-500")}>{description}</Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
-        className="pt-4"
+        style={tw("pt-4")}
       >
         {restaurants.map((restaurant) => (
           <RestaurantCard

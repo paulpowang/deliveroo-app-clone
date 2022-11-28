@@ -17,8 +17,10 @@ import {
 } from "react-native-heroicons/outline";
 import { StarIcon } from "react-native-heroicons/solid";
 import DishRow from "../components/DishRow";
+import { useTailwind } from "tailwind-rn";
 
 const RestaurantScreen = () => {
+  const tw = useTailwind();
   const navigation = useNavigation();
   const {
     params: {
@@ -43,34 +45,36 @@ const RestaurantScreen = () => {
 
   return (
     <ScrollView>
-      <View className="relative">
+      <View style={tw("relative")}>
         <Image
           source={{ uri: urlFor(imgUrl).url() }}
-          className="h-56 w-full bg-gray-300"
+          style={tw("h-56 w-full bg-gray-300")}
         />
       </View>
       <TouchableOpacity
-        className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full"
+        style={tw("absolute top-14 left-5 p-2 bg-gray-100 rounded-full")}
         onPress={() => navigation.goBack()}
       >
         <ArrowLeftIcon size="20" color="#0cb" />
       </TouchableOpacity>
-      <View className="bg-white">
-        <View className="px-4 pt-4">
-          <Text className="text-3xl font-bold">{title}</Text>
-          <View className="flex-row items-center space-x-1">
-            <StarIcon color="green" opacity={0.5} size="22" />
-            <Text className="text-xs text-gray-500">
-              <Text className="text-green-500">{rating}</Text> - {genre}
+      <View style={tw("bg-white")}>
+        <View style={tw("px-4 pt-4")}>
+          <Text style={tw("text-3xl font-bold")}>{title}</Text>
+          <View style={tw("flex-row items-center")}>
+            <StarIcon color="green" opacity={0.5} size="22" style={tw("")} />
+            <Text style={tw("text-xs text-gray-500")}>
+              <Text style={tw("text-green-500")}>{rating}</Text> - {genre}
             </Text>
             <MapPinIcon color="gray" opacity={0.4} size="22" />
-            <Text className="text-xs text-gray-500">Nearby - {address}</Text>
+            <Text style={tw("text-xs text-gray-500")}>Nearby - {address}</Text>
           </View>
-          <Text className="text-gray-500 mt-2 pb-4">{short_description}</Text>
+          <Text style={tw("text-gray-500 mt-2 pb-4")}>{short_description}</Text>
         </View>
-        <TouchableOpacity className="flex-row items-center p-4 space-x-2 border-y border-gray-300">
+        <TouchableOpacity
+          style={tw("flex-row items-center p-4 border-y border-gray-300")}
+        >
           <QuestionMarkCircleIcon color="gray" opacity={0.6} size="20" />
-          <Text className="pl-2 flex-1 text-md font-bold">
+          <Text style={tw("pl-2 flex-1 text-base font-bold")}>
             Have a food allergy?
           </Text>
           <ChevronRightIcon color="#0cb" size="20" />
@@ -78,7 +82,7 @@ const RestaurantScreen = () => {
       </View>
 
       <View>
-        <Text className="px-4 pt-6 mb-3 font-bold text-xl">Menu</Text>
+        <Text style={tw("px-4 pt-6 mb-3 font-bold text-xl")}>Menu</Text>
         {dishes.map((dish) => (
           <DishRow
             key={dish._id}

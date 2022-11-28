@@ -6,27 +6,29 @@ import {
   MinusCircleIcon,
   PlusCircleIcon,
 } from "react-native-heroicons/outline";
+import { useTailwind } from "tailwind-rn";
 
 const DishRow = ({ id, name, description, price, image }) => {
+  const tw = useTailwind();
   const [isPressed, setIsPressed] = useState(false);
 
   return (
     <>
       <TouchableOpacity
-        className="bg-white border p-4 border-gray-200"
+        style={tw("bg-white border p-4 border-gray-200")}
         onPress={() => setIsPressed(!isPressed)}
       >
-        <View className="flex-row">
-          <View className="flex-1 pr-2">
-            <Text className="text-lg mb-1">{name}</Text>
-            <Text className="text-gray-400">{description}</Text>
-            <Text className="text-gray-400 mt-2">
+        <View style={tw("flex-row")}>
+          <View style={tw("flex-1 pr-2")}>
+            <Text style={tw("text-lg mb-1")}>{name}</Text>
+            <Text style={tw("text-gray-400")}>{description}</Text>
+            <Text style={tw("text-gray-400 mt-2")}>
               <Currency quantity={price} currency="USD" />
             </Text>
           </View>
           <Image
             source={{ uri: urlFor(image).url() }}
-            className="h-20 w-20 bg-gray-300 p-4"
+            style={tw("h-20 w-20 bg-gray-300 p-4")}
           />
         </View>
       </TouchableOpacity>
